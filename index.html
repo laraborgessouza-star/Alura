@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #6a89cc;
-            --secondary-color: #4a69bd;
-            --accent-color: #1e3799;
-            --text-color: #333;
-            --light-bg: #f8f9fa;
+            --primary-color: #FFEAA7;
+            --secondary-color: #FDCB6E;
+            --accent-color: #E17055;
+            --text-color: #2D3436;
+            --light-bg: #FFF9E6;
             --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
         }
 
@@ -26,7 +26,7 @@
 
         body {
             color: var(--text-color);
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFEAA7 100%);
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
@@ -59,7 +59,7 @@
         .logo {
             font-size: 28px;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--accent-color);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -84,7 +84,7 @@
         }
 
         nav a:hover {
-            color: var(--primary-color);
+            color: var(--accent-color);
         }
 
         nav a::after {
@@ -94,7 +94,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary-color);
+            background: var(--accent-color);
             transition: var(--transition);
         }
 
@@ -137,6 +137,55 @@
             width: 100%;
             height: 500px;
             display: block;
+        }
+
+        .videos-section {
+            padding: 80px 0;
+            background: var(--white);
+            border-radius: 30px;
+            margin: 40px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .video-card {
+            background: var(--light-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-card iframe {
+            width: 100%;
+            height: 200px;
+            display: block;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .video-info p {
+            color: #666;
+            font-size: 0.95rem;
         }
 
         .about {
@@ -221,7 +270,7 @@
 
         .feature-icon {
             font-size: 40px;
-            color: var(--primary-color);
+            color: var(--accent-color);
             margin-bottom: 20px;
         }
 
@@ -256,20 +305,20 @@
 
         .contact-btn {
             display: inline-block;
-            background: var(--primary-color);
+            background: var(--accent-color);
             color: white;
             padding: 15px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(106, 137, 204, 0.3);
+            box-shadow: 0 5px 15px rgba(225, 112, 85, 0.3);
         }
 
         .contact-btn:hover {
-            background: var(--accent-color);
+            background: #d35400;
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(106, 137, 204, 0.4);
+            box-shadow: 0 8px 20px rgba(225, 112, 85, 0.4);
         }
 
         footer {
@@ -304,13 +353,13 @@
         }
 
         .footer-links a:hover {
-            color: #a5b1c2;
+            color: #FFEAA7;
         }
 
         .credits {
             margin-top: 20px;
             font-size: 0.9rem;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         @keyframes fadeIn {
@@ -361,6 +410,10 @@
             .video-container iframe {
                 height: 300px;
             }
+            
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -375,6 +428,7 @@
                 <nav>
                     <ul>
                         <li><a href="#home">Início</a></li>
+                        <li><a href="#videos">Vídeos</a></li>
                         <li><a href="#about">Sobre</a></li>
                         <li><a href="#features">Vantagens</a></li>
                         <li><a href="#contact">Contato</a></li>
@@ -394,6 +448,61 @@
             </div>
             
             <p class="tag">#tutorial de inglês</p>
+        </div>
+    </section>
+
+    <section class="videos-section" id="videos">
+        <div class="container">
+            <h2 class="section-title">Mais Vídeos para Aprender Inglês</h2>
+            <div class="videos-grid">
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/0xR_xMu5Z9Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3>Inglês em Restaurantes</h3>
+                        <p>Aprenda vocabulário e frases úteis para pedir comida em restaurantes nos EUA.</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/69afokRFzPM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3>Expressões do Dia a Dia</h3>
+                        <p>Frases comuns que os nova-iorquinos usam no cotidiano.</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/2H6OiD_fj_c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3>Transporte Público</h3>
+                        <p>Como se locomover por Nova York usando o metrô e ônibus.</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/6h1qV8Lh_a8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3>Compras em Nova York</h3>
+                        <p>Vocabulário essencial para fazer compras em lojas americanas.</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/5MgBikgcWnY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3> Pronúncia Americana</h3>
+                        <p>Dicas para melhorar sua pronúncia e soar mais como um nativo.</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/3Bh7g43BBU4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3>Dicas para Turistas</h3>
+                        <p>Como se comunicar em situações típicas de viagem para Nova York.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -460,6 +569,7 @@
                 <div class="footer-logo">ALURAFLIX</div>
                 <div class="footer-links">
                     <a href="#home">Início</a>
+                    <a href="#videos">Vídeos</a>
                     <a href="#about">Sobre</a>
                     <a href="#features">Vantagens</a>
                     <a href="#contact">Contato</a>
