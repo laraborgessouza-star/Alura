@@ -1,610 +1,433 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AluraFlix | Aprenda Inglês no Canadá</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #FF5252;
-            --secondary-color: #FFFFFF;
-            --accent-color: #FF5252;
-            --text-color: #2D3436;
-            --light-bg: #F5F5F5;
-            --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-
-        body {
-            color: var(--text-color);
-            background: linear-gradient(135deg, #F5F5F5 0%, #FFFFFF 100%);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 20px 0;
-            animation: fadeInDown 0.8s ease;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--accent-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            color: var(--accent-color);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        nav a:hover {
-            color: var(--accent-color);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-color);
-            transition: var(--transition);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            padding: 100px 0;
-            text-align: center;
-            animation: fadeIn 1s ease;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2011&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-            line-height: 1.2;
-            animation: slideInUp 0.8s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: var(--secondary-color);
-            animation: slideInUp 0.8s ease 0.2s both;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .video-container {
-            max-width: 900px;
-            margin: 0 auto 60px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            animation: slideInUp 0.8s ease 0.4s both;
-        }
-
-        .video-container iframe {
-            width: 100%;
-            height: 500px;
-            display: block;
-        }
-
-        .videos-section {
-            padding: 80px 0;
-            background: var(--white);
-            border-radius: 30px;
-            margin: 40px 0;
-            box-shadow: var(--shadow);
-        }
-
-        .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .video-card {
-            background: var(--light-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .video-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .video-card iframe {
-            width: 100%;
-            height: 200px;
-            display: block;
-        }
-
-        .video-info {
-            padding: 20px;
-        }
-
-        .video-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--accent-color);
-        }
-
-        .video-info p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        .about {
-            padding: 80px 0;
-            background: var(--white);
-            border-radius: 30px 30px 0 0;
-            margin-top: 40px;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-        }
-
-        .about p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-        .about-image {
-            flex: 1;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: var(--transition);
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .features {
-            padding: 80px 0;
-            background: var(--light-bg);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            color: var(--accent-color);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .feature-icon {
-            font-size: 40px;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--accent-color);
-        }
-
-        .contact {
-            padding: 80px 0;
-            background: var(--white);
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-        }
-
-        .contact p {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-        .contact-btn {
-            display: inline-block;
-            background: var(--accent-color);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(255, 82, 82, 0.3);
-        }
-
-        .contact-btn:hover {
-            background: #d32f2f;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 82, 82, 0.4);
-        }
-
-        footer {
-            background: var(--accent-color);
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .footer-logo {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: #FFCDD2;
-        }
-
-        .credits {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            nav ul {
-                gap: 15px;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .video-container iframe {
-                height: 300px;
-            }
-            
-            .videos-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Óptica do Olho Humano</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-play-circle"></i>
-                    ALURAFLIX
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#home">Início</a></li>
-                        <li><a href="#videos">Vídeos</a></li>
-                        <li><a href="#about">Sobre</a></li>
-                        <li><a href="#features">Vantagens</a></li>
-                        <li><a href="#contact">Contato</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
 
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>APRENDA INGLÊS COMIGO EXPLORANDO O CANADÁ</h1>
-            <p>Mergulhe na língua inglesa através de experiências reais nas belas paisagens canadenses. Aprenda de forma natural e divertida!</p>
-            
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/gNkVeJjZ9CE?si=rejq3Kcq9LuIStbM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            
-            <p class="tag">#tutorial de inglês</p>
+<!-- HERO -->
+<header class="hero">
+    <nav class="nav">
+        <span class="nav-logo">👁 óptica ocular</span>
+        <ul class="nav-links">
+            <li><a href="#anatomia">Anatomia</a></li>
+            <li><a href="#fisica">Física</a></li>
+            <li><a href="#simulador">Simulador</a></li>
+            <li><a href="#deficiencias">Deficiências</a></li>
+            <li><a href="#videos">Vídeos</a></li>
+        </ul>
+    </nav>
+    <div class="hero-content">
+        <p class="hero-eyebrow">ciência da visão</p>
+        <h1 class="hero-title">Como o olho<br /><em>transforma luz</em><br />em imagem</h1>
+        <p class="hero-desc">Uma jornada completa pela óptica do olho humano — da física da refração à neurociência da percepção visual.</p>
+        <div class="hero-stats">
+            <div class="stat"><span class="stat-n">~60</span><span class="stat-l">dioptrias totais</span></div>
+            <div class="stat"><span class="stat-n">126M</span><span class="stat-l">fotorreceptores</span></div>
+            <div class="stat"><span class="stat-n">0,2mm</span><span class="stat-l">espessura da fóvea</span></div>
         </div>
-    </section>
+    </div>
+    <div class="hero-eye-wrap">
+        <canvas id="heroCanvas" width="520" height="400"></canvas>
+    </div>
+</header>
 
-    <section class="videos-section" id="videos">
-        <div class="container">
-            <h2 class="section-title">Mais Vídeos para Aprender Inglês</h2>
-            <div class="videos-grid">
-                <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/MzrzPKzdFkg?si=Vj1rdaxfXFdpozTR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <h3>Inglês em Vancouver</h3>
-                        <p>Aprenda vocabulário e frases úteis enquanto exploramos Vancouver, uma das cidades mais bonitas do Canadá.</p>
-                    </div>
-                </div>
-                
-                <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/Iy4R84S2lCE?si=6P_9JLK1UdiKdiFp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <h3>Expressões Canadenses</h3>
-                        <p>Frases comuns que os canadenses usam no cotidiano, incluindo expressões típicas do país.</p>
-                    </div>
-                </div>
-                
-                <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/yVHkh3lMnJA?si=zoGhz0a3zOfgty6F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <h3>Inverno Canadense</h3>
-                        <p>Como se comunicar em situações típicas do inverno canadense e vocabulário relacionado ao clima frio.</p>
-                    </div>
-                </div>
-                
-                <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/gNkVeJjZ9CE?si=rejq3Kcq9LuIStbM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <h3>Toronto em Inglês</h3>
-                        <p>Explore Toronto enquanto aprende inglês em situações reais da maior cidade do Canadá.</p>
-                    </div>
-                </div>
-                
-                <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/MzrzPKzdFkg?si=Vj1rdaxfXFdpozTR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <h3> Pronúncia Canadense</h3>
-                        <p>Dicas para melhorar sua pronúncia e soar mais como um canadense nativo.</p>
-                    </div>
-                </div>
-                
-                <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/Iy4R84S2lCE?si=6P_9JLK1UdiKdiFp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    <div class="video-info">
-                        <h3>Dicas para Imigrantes</h3>
-                        <p>Como se comunicar em situações importantes para quem está se mudando para o Canadá.</p>
-                    </div>
-                </div>
+<!-- ANATOMIA -->
+<section class="section" id="anatomia">
+    <div class="container">
+        <div class="section-label">01 — anatomia</div>
+        <h2 class="section-title">O olho como sistema óptico</h2>
+        <p class="section-lead">O olho humano é composto por estruturas que trabalham em conjunto para capturar, refratar e processar a luz. Cada componente desempenha um papel específico e insubstituível na formação da imagem.</p>
+
+        <div class="anatomy-grid">
+            <div class="anatomy-img-col">
+                <figure class="anatomy-figure">
+                    <img 
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Human_eye_cross-sectional_diagram_%28multilingual%29.svg/800px-Human_eye_cross-sectional_diagram_%28multilingual%29.svg.png" 
+                        alt="Corte transversal do olho humano" 
+                        class="anatomy-img" />
+                    <figcaption>Corte transversal do olho humano — Wikimedia Commons (domínio público)</figcaption>
+                </figure>
             </div>
-        </div>
-    </section>
-
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Sobre Mim</h2>
-                    <p>Olá! Eu sou Lara Borges, apaixonada por ensinar inglês de forma prática e envolvente. Minha metodologia combina situações reais do dia a dia com técnicas de aprendizado eficazes.</p>
-                    <p>Neste site, você encontrará conteúdo exclusivo para aprender inglês enquanto explora o Canadá comigo. Aprenda vocabulário, expressões e pronúncia em contextos reais das cidades canadenses.</p>
-                    <p>Este site foi programado com a assistência do DeepSeek, demonstrando como a tecnologia pode ser uma aliada poderosa no processo de aprendizado.</p>
+            <div class="parts-list">
+                <div class="part-item" data-part="cornea">
+                    <div class="part-icon">◉</div>
+                    <div>
+                        <h3>Córnea</h3>
+                        <p>Camada transparente na frente do olho. Responsável por cerca de <strong>70% da refração total</strong> (~43 dioptrias). Sua curvatura é fixa, mas é o principal agente de convergência da luz.</p>
+                    </div>
                 </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1519832979-6fa011b87667?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Lara Borges no Canadá">
+                <div class="part-item" data-part="iris">
+                    <div class="part-icon">◎</div>
+                    <div>
+                        <h3>Íris e Pupila</h3>
+                        <p>A íris é o diafragma muscular colorido do olho. A <strong>pupila</strong> é a abertura central que se dilata (midríase) ou contrai (miose) para controlar a quantidade de luz que entra.</p>
+                    </div>
+                </div>
+                <div class="part-item" data-part="cristalino">
+                    <div class="part-icon">⬡</div>
+                    <div>
+                        <h3>Cristalino</h3>
+                        <p>Lente biconvexa flexível atrás da íris. Contribui com <strong>~15 a 29 dioptrias</strong> conforme a acomodação. Controlado pelos <em>músculos ciliares</em>, ajusta o foco de objetos próximos ou distantes.</p>
+                    </div>
+                </div>
+                <div class="part-item" data-part="retina">
+                    <div class="part-icon">⬛</div>
+                    <div>
+                        <h3>Retina</h3>
+                        <p>Camada sensível à luz no fundo do olho. Contém <strong>~120 milhões de bastonetes</strong> (visão escotópica) e <strong>~6 milhões de cones</strong> (cor e visão diurna). A imagem aqui é invertida e reduzida.</p>
+                    </div>
+                </div>
+                <div class="part-item" data-part="fovea">
+                    <div class="part-icon">◐</div>
+                    <div>
+                        <h3>Fóvea e Mácula</h3>
+                        <p>Região central da retina com maior densidade de cones. A <strong>fóvea</strong> mede apenas ~1,5 mm de diâmetro e é responsável pela visão de alta resolução e leitura.</p>
+                    </div>
+                </div>
+                <div class="part-item" data-part="nervo">
+                    <div class="part-icon">⟶</div>
+                    <div>
+                        <h3>Nervo óptico e ponto cego</h3>
+                        <p>O nervo óptico transmite os sinais elétricos da retina ao cérebro. O <strong>ponto cego</strong> (papila óptica) é onde o nervo sai — sem fotorreceptores, o cérebro "preenche" essa lacuna.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section class="features" id="features">
-        <div class="container">
-            <h2 class="section-title">Vantagens do Método</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-map-marked-alt"></i>
+        <!-- segunda imagem: retina -->
+        <div class="retina-section">
+            <figure class="retina-figure">
+                <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Retina_diagram_%26_photoreceptors.png/640px-Retina_diagram_%26_photoreceptors.png" 
+                    alt="Diagrama da retina com fotorreceptores" 
+                    class="retina-img" />
+                <figcaption>Estrutura da retina e tipos de fotorreceptores — Wikimedia Commons (domínio público)</figcaption>
+            </figure>
+            <div class="retina-info">
+                <h3>Os fotorreceptores</h3>
+                <p>A retina possui dois tipos de células fotossensíveis:</p>
+                <div class="receptor-row">
+                    <div class="receptor-card rod">
+                        <span class="r-icon">▌</span>
+                        <h4>Bastonetes</h4>
+                        <p>~120 milhões · Detectam intensidade luminosa (escuro/claro) · Visão noturna e periférica · Sensíveis à rodopsina</p>
                     </div>
-                    <h3>Aprendizado Contextual</h3>
-                    <p>Você aprende inglês em situações reais, visitando locais icônicos do Canadá, o que facilita a memorização e aplicação.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-comments"></i>
+                    <div class="receptor-card cone">
+                        <span class="r-icon">▲</span>
+                        <h4>Cones</h4>
+                        <p>~6 milhões · Detectam comprimentos de onda (S, M, L) correspondendo a azul, verde e vermelho · Visão fotópica e colorida</p>
                     </div>
-                    <h3>Conversação Natural</h3>
-                    <p>Pratique diálogos do cotidiano com situações reais que você encontraria vivendo ou visitando o Canadá.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Conteúdo Exclusivo</h3>
-                    <p>Acesso a materiais desenvolvidos especialmente para quem quer aprender inglês de forma prática e eficiente.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2>Entre em Contato</h2>
-                <p>Tem dúvidas ou quer saber mais sobre o método? Entre em contato comigo!</p>
-                <a href="mailto:laraborgesdesouza31@gmail.com" class="contact-btn">
-                    <i class="fas fa-envelope"></i> Enviar Email
-                </a>
+<!-- FÍSICA -->
+<section class="section dark-section" id="fisica">
+    <div class="container">
+        <div class="section-label light">02 — física da visão</div>
+        <h2 class="section-title light">Refração, lentes e acomodação</h2>
+        <p class="section-lead light">O processo de visão é um fenômeno de óptica geométrica. A luz muda de velocidade ao passar entre meios com índices de refração diferentes — e é esse princípio que permite ao olho formar imagens nítidas.</p>
+
+        <div class="physics-grid">
+            <div class="physics-card">
+                <div class="phys-num">01</div>
+                <h3>Lei de Snell-Descartes</h3>
+                <p>Ao mudar de meio, a luz é refratada. A lei descreve:</p>
+                <div class="formula">n₁ · sin(θ₁) = n₂ · sin(θ₂)</div>
+                <p>No olho, a luz passa do ar (n≈1,0) para a córnea (n≈1,376), o humor aquoso (n≈1,336), o cristalino (n≈1,40) e o humor vítreo (n≈1,336).</p>
+            </div>
+            <div class="physics-card">
+                <div class="phys-num">02</div>
+                <h3>Distância focal e dioptrias</h3>
+                <p>O poder de refração de uma lente é medido em dioptrias (D):</p>
+                <div class="formula">D = 1 / f (em metros)</div>
+                <p>O olho em repouso tem ~60 D. Durante acomodação máxima, pode atingir ~74 D, com a retina a ~17 mm atrás da córnea.</p>
+            </div>
+            <div class="physics-card">
+                <div class="phys-num">03</div>
+                <h3>Acomodação visual</h3>
+                <p>O cristalino muda de forma para ajustar o foco:</p>
+                <ul class="phys-list">
+                    <li>🔭 <strong>Visão distante:</strong> músculo ciliar relaxado → cristalino achatado → menor curvatura → menor poder de refração</li>
+                    <li>🔬 <strong>Visão próxima:</strong> músculo ciliar contraído → cristalino espessado → maior curvatura → maior refração</li>
+                </ul>
+            </div>
+            <div class="physics-card">
+                <div class="phys-num">04</div>
+                <h3>A imagem na retina</h3>
+                <p>A imagem formada na retina é:</p>
+                <ul class="phys-list">
+                    <li>↕ <strong>Invertida</strong> — o cérebro reorienta</li>
+                    <li>⬌ <strong>Lateralmente invertida</strong></li>
+                    <li>🔎 <strong>Reduzida</strong> — um objeto de 1,7m a 6m forma uma imagem de ~4,85mm na retina</li>
+                    <li>🎨 <strong>Real</strong> — a luz converge de fato no plano retiniano</li>
+                </ul>
             </div>
         </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">ALURAFLIX</div>
-                <div class="footer-links">
-                    <a href="#home">Início</a>
-                    <a href="#videos">Vídeos</a>
-                    <a href="#about">Sobre</a>
-                    <a href="#features">Vantagens</a>
-                    <a href="#contact">Contato</a>
+        <figure class="accom-figure">
+            <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Accommodation_%28PSF%29.png/640px-Accommodation_%28PSF%29.png" 
+                alt="Diagrama de acomodação do cristalino" 
+                class="accom-img" />
+            <figcaption>Acomodação do cristalino: diferença entre visão próxima e distante — Wikimedia Commons (domínio público)</figcaption>
+        </figure>
+
+        <div class="indices-table-wrap">
+            <h3 class="table-title">Índices de refração dos meios oculares</h3>
+            <table class="indices-table">
+                <thead>
+                    <tr>
+                        <th>Meio</th>
+                        <th>Índice de Refração (n)</th>
+                        <th>Contribuição óptica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Ar</td><td>1,000</td><td>—</td></tr>
+                    <tr><td>Filme lacrimal</td><td>1,336</td><td>Proteção e lubrificação da córnea</td></tr>
+                    <tr><td>Córnea</td><td>1,376</td><td>~43 D (fixo)</td></tr>
+                    <tr><td>Humor aquoso</td><td>1,336</td><td>Nutrição e pressão intraocular</td></tr>
+                    <tr><td>Cristalino</td><td>1,386–1,406</td><td>15–29 D (variável)</td></tr>
+                    <tr><td>Humor vítreo</td><td>1,336</td><td>Manutenção da forma ocular</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- SIMULADOR -->
+<section class="section" id="simulador">
+    <div class="container">
+        <div class="section-label">03 — simulador interativo</div>
+        <h2 class="section-title">Experimente a óptica ocular</h2>
+        <p class="section-lead">Ajuste os controles para visualizar como o cristalino muda sua curvatura e como isso afeta o ponto focal da imagem dentro do olho.</p>
+
+        <div class="sim-layout">
+            <div class="sim-main">
+                <div class="canvas-wrap">
+                    <canvas id="eyeCanvas" width="600" height="380"></canvas>
                 </div>
-                <div class="credits">
-                    <p>Site desenvolvido por Lara Borges | Contato: laraborgesdesouza31@gmail.com</p>
-                    <p>Este site foi programado com a assistência do DeepSeek</p>
+                <div id="sim-status" class="sim-status">✓ Visão normal — foco exatamente sobre a retina</div>
+            </div>
+            <div class="sim-controls">
+                <div class="ctrl-group">
+                    <label>Curvatura do cristalino</label>
+                    <div class="range-row">
+                        <span class="range-min">↓ achatado</span>
+                        <input type="range" id="curvatureSlider" min="0.3" max="1.8" step="0.01" value="1.0" />
+                        <span class="range-max">esférico ↑</span>
+                    </div>
+                    <div class="value-row"><span class="val-label">Valor:</span><span class="val-num" id="curvatureValue">1.00</span></div>
+                </div>
+
+                <div class="ctrl-group">
+                    <label>Comprimento axial</label>
+                    <div class="range-row">
+                        <span class="range-min">↓ curto</span>
+                        <input type="range" id="axialSlider" min="0.5" max="1.5" step="0.01" value="1.0" />
+                        <span class="range-max">longo ↑</span>
+                    </div>
+                    <div class="value-row"><span class="val-label">Valor:</span><span class="val-num" id="axialValue">1.00</span></div>
+                </div>
+
+                <div class="ctrl-group">
+                    <label>Distância do objeto</label>
+                    <div class="range-row">
+                        <span class="range-min">← perto</span>
+                        <input type="range" id="distanceSlider" min="0.4" max="1.6" step="0.01" value="1.0" />
+                        <span class="range-max">longe →</span>
+                    </div>
+                    <div class="value-row"><span class="val-label">Valor:</span><span class="val-num" id="distanceValue">1.00</span></div>
+                </div>
+
+                <button class="btn-reset" id="resetButton">↺ Restaurar valores padrão</button>
+
+                <div class="preset-group">
+                    <p class="preset-label">Condições visuais:</p>
+                    <button class="preset-btn" data-preset="normal">Visão normal</button>
+                    <button class="preset-btn" data-preset="miopia">Miopia</button>
+                    <button class="preset-btn" data-preset="hipermetropia">Hipermetropia</button>
+                    <button class="preset-btn" data-preset="presbiopia">Presbiopia</button>
+                </div>
+
+                <div class="sim-legend">
+                    <div class="leg-item"><span class="leg-dot" style="background:#e05252"></span> Raio superior</div>
+                    <div class="leg-item"><span class="leg-dot" style="background:#4a7de0"></span> Raio central</div>
+                    <div class="leg-item"><span class="leg-dot" style="background:#45b069"></span> Raio inferior</div>
+                    <div class="leg-item"><span class="leg-dot" style="background:#f0c040"></span> Ponto focal</div>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+<!-- DEFICIÊNCIAS VISUAIS -->
+<section class="section alt-section" id="deficiencias">
+    <div class="container">
+        <div class="section-label">04 — deficiências visuais</div>
+        <h2 class="section-title">Quando a óptica foge do ideal</h2>
+        <p class="section-lead">As ametropias são erros de refração onde a imagem não se forma exatamente sobre a retina. São as condições visuais mais comuns do mundo.</p>
+
+        <div class="def-grid">
+            <div class="def-card miopia-card">
+                <div class="def-icon">🔵</div>
+                <h3>Miopia</h3>
+                <p>O olho é longo demais ou a córnea muito curvada. A imagem se forma <strong>antes da retina</strong>. Objetos próximos são vistos com clareza, mas objetos distantes ficam embaçados.</p>
+                <div class="def-stat">Afeta ~30% da população mundial</div>
+                <div class="def-correction"><strong>Correção:</strong> lentes divergentes (côncavas) · cirurgia refrativa (LASIK)</div>
+            </div>
+            <div class="def-card hiper-card">
+                <div class="def-icon">🟠</div>
+                <h3>Hipermetropia</h3>
+                <p>O olho é curto demais ou a córnea pouco curvada. A imagem se forma <strong>atrás da retina</strong>. Objetos distantes podem ser claros, mas objetos próximos ficam embaçados.</p>
+                <div class="def-stat">Afeta ~25% da população mundial</div>
+                <div class="def-correction"><strong>Correção:</strong> lentes convergentes (convexas) · cirurgia refrativa</div>
+            </div>
+            <div class="def-card astig-card">
+                <div class="def-icon">🟡</div>
+                <h3>Astigmatismo</h3>
+                <p>A córnea ou cristalino tem curvatura irregular. A luz se foca em <strong>múltiplos pontos</strong> em vez de um único ponto. Resulta em visão distorcida e embaçada a todas as distâncias.</p>
+                <div class="def-stat">Afeta ~40% da população mundial</div>
+                <div class="def-correction"><strong>Correção:</strong> lentes cilíndricas (tóricas) · cirurgia refrativa</div>
+            </div>
+            <div class="def-card presby-card">
+                <div class="def-icon">🟤</div>
+                <h3>Presbiopia</h3>
+                <p>Com a idade, o cristalino perde elasticidade. A <strong>acomodação diminui progressivamente</strong>. Dificuldade de foco em objetos próximos, geralmente a partir dos 40 anos.</p>
+                <div class="def-stat">Atinge quase 100% após os 50 anos</div>
+                <div class="def-correction"><strong>Correção:</strong> lentes progressivas · lentes bifocais · cirurgia</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VÍDEOS -->
+<section class="section" id="videos">
+    <div class="container">
+        <div class="section-label">05 — vídeos educativos</div>
+        <h2 class="section-title">Aprofunde seu conhecimento</h2>
+        <p class="section-lead">Conteúdos selecionados de canais educativos confiáveis para complementar o estudo da óptica ocular.</p>
+
+        <div class="video-grid">
+            <div class="video-block">
+                <div class="video-wrap">
+                    <iframe src="https://www.youtube.com/embed/1Vg_7z-Tipc"
+                        title="Como funciona a visão humana"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="video-meta">
+                    <span class="video-channel">Ciência Todo Dia</span>
+                    <h4>Como funciona a visão humana</h4>
+                    <p>Explicação completa sobre o processo de formação de imagens no olho, abordando córnea, cristalino e retina.</p>
+                </div>
+            </div>
+
+            <div class="video-block">
+                <div class="video-wrap">
+                    <iframe src="https://www.youtube.com/embed/wTbpnPfGZ5k"
+                        title="Óptica Geométrica - Lentes"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="video-meta">
+                    <span class="video-channel">Khan Academy Brasil</span>
+                    <h4>Óptica Geométrica — Lentes e Refração</h4>
+                    <p>Fundamentos de óptica geométrica, lei de Snell e comportamento de lentes convergentes e divergentes.</p>
+                </div>
+            </div>
+
+            <div class="video-block">
+                <div class="video-wrap">
+                    <iframe src="https://www.youtube.com/embed/AAf6qXKQkS8"
+                        title="Como funcionam os olhos"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="video-meta">
+                    <span class="video-channel">Ted-Ed (legendado)</span>
+                    <h4>Como seus olhos funcionam</h4>
+                    <p>Animação detalhada mostrando o caminho da luz desde a córnea até o processamento cerebral da imagem.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FONTES -->
+<section class="section sources-section">
+    <div class="container">
+        <div class="section-label">06 — fontes e referências</div>
+        <h2 class="section-title">Referências científicas</h2>
+        <div class="sources-grid">
+            <a href="https://www.aao.org/eye-health/anatomy/eye-anatomy-overview" target="_blank" rel="noopener" class="source-card">
+                <div class="source-logo">AAO</div>
+                <div>
+                    <h4>American Academy of Ophthalmology</h4>
+                    <p>Anatomia e fisiologia detalhada do olho humano. Principal entidade oftalmológica dos EUA.</p>
+                </div>
+            </a>
+            <a href="https://www.ncbi.nlm.nih.gov/books/NBK482403/" target="_blank" rel="noopener" class="source-card">
+                <div class="source-logo">NCBI</div>
+                <div>
+                    <h4>NCBI Bookshelf — Physiology of the Eye</h4>
+                    <p>Artigo revisado por pares sobre fisiologia ocular na plataforma da National Library of Medicine (EUA).</p>
+                </div>
+            </a>
+            <a href="https://pt.khanacademy.org/science/biology/human-biology/eye-ear/a/vision" target="_blank" rel="noopener" class="source-card">
+                <div class="source-logo">KA</div>
+                <div>
+                    <h4>Khan Academy — Visão</h4>
+                    <p>Material educativo gratuito e de qualidade sobre o sistema visual, acessível em português.</p>
+                </div>
+            </a>
+            <a href="https://www.ufrgs.br/neurofisiologia/visao/" target="_blank" rel="noopener" class="source-card">
+                <div class="source-logo">UFRGS</div>
+                <div>
+                    <h4>UFRGS — Neurofisiologia da Visão</h4>
+                    <p>Material acadêmico do curso de Neurofisiologia da Universidade Federal do Rio Grande do Sul.</p>
+                </div>
+            </a>
+            <a href="https://www.who.int/news-room/fact-sheets/detail/blindness-and-visual-impairment" target="_blank" rel="noopener" class="source-card">
+                <div class="source-logo">OMS</div>
+                <div>
+                    <h4>OMS — Deficiência Visual Global</h4>
+                    <p>Dados epidemiológicos da Organização Mundial da Saúde sobre ametropias e cegueira no mundo.</p>
+                </div>
+            </a>
+            <a href="https://doi.org/10.1016/j.preteyeres.2004.06.001" target="_blank" rel="noopener" class="source-card">
+                <div class="source-logo">DOI</div>
+                <div>
+                    <h4>Progress in Retinal and Eye Research</h4>
+                    <p>Artigo científico revisado sobre acomodação e óptica do cristalino (Elsevier, 2004).</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="footer-brand">👁 Óptica do Olho</div>
+        <p class="footer-text">Projeto educativo sobre a física e biologia da visão humana.<br />Imagens via Wikimedia Commons (domínio público). Vídeos via YouTube (uso educacional).</p>
+        <p class="footer-copy">Fontes: AAO · NCBI · Khan Academy · UFRGS · OMS</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
